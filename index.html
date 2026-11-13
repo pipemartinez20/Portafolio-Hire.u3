@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101010">
+  <meta name="description" content="Portafolio del proyecto HIRE-U: una plataforma universitaria para conectar talento joven con oportunidades laborales.">
+  <title>HIRE-U — Portafolio del proyecto</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --paper: #101010;
+      --white: #191919;
+      --ink: #f5f5f5;
+      --muted: #b9b9b9;
+      --line: #343434;
+      --orange: #ea7b1a;
+      --orange-dark: #ff9238;
+      --yellow: #ff9238;
+      --shadow: 0 22px 65px rgb(0 0 0 / 35%);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    button { font: inherit; }
+    .wrap { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--orange-dark);
+      font-size: .73rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { width: 23px; height: 2px; background: var(--orange); content: ""; }
+
+    .topbar {
+      position: sticky;
+      z-index: 10;
+      top: 0;
+      border-bottom: 1px solid rgb(52 52 52 / 85%);
+      background: rgb(16 16 16 / 92%);
+      backdrop-filter: blur(16px);
+    }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; }
+    .brand img { width: 50px; height: 43px; padding: 3px; border-radius: 9px; background: #fff; object-fit: contain; }
+    .brand-name { font-size: 1.18rem; font-weight: 900; letter-spacing: -.06em; }
+    .brand-name span { color: var(--orange); }
+    .nav-links { display: flex; align-items: center; gap: 30px; }
+    .nav-links a { color: #e4e4e4; font-size: .88rem; font-weight: 650; text-decoration: none; transition: color .2s; }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cta { padding: 11px 17px; border-radius: 999px; background: var(--orange); color: #171717 !important; }
+    .nav-cta:hover { background: var(--yellow); }
+
+    .hero { position: relative; overflow: hidden; padding: 70px 0 76px; background: radial-gradient(circle at 8% 8%, rgb(234 123 26 / 14%), transparent 32%), linear-gradient(135deg, #101010, #171717); }
+    .hero::before, .hero::after { position: absolute; z-index: -1; border-radius: 50%; content: ""; filter: blur(1px); }
+    .hero::before { width: 410px; height: 410px; top: -165px; right: -85px; background: rgb(234 123 26 / 10%); }
+    .hero::after { width: 230px; height: 230px; bottom: -155px; left: -100px; background: rgb(234 123 26 / 7%); }
+    .hero-grid { display: grid; grid-template-columns: 1fr .94fr; align-items: center; gap: 50px; }
+    .hero h1 { max-width: 650px; margin: 18px 0 20px; font-size: clamp(3.2rem, 7vw, 6.1rem); font-weight: 850; letter-spacing: -.085em; line-height: .96; }
+    .hero h1 span { color: var(--orange-dark); }
+    .hero-copy { max-width: 520px; color: var(--muted); font-size: 1.05rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 28px; }
+    .button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 9px; padding: 0 19px; border: 1px solid transparent; border-radius: 999px; background: var(--orange); color: #171717; font-size: .9rem; font-weight: 750; text-decoration: none; transition: transform .2s, background .2s; }
+    .button:hover { transform: translateY(-2px); background: var(--yellow); }
+    .button.secondary { border-color: var(--line); background: #191919; color: var(--ink); }
+    .button.secondary:hover { border-color: var(--orange); background: #202020; }
+    .hero-note { display: flex; align-items: center; gap: 11px; margin-top: 32px; color: var(--muted); font-size: .8rem; }
+    .hero-note strong { color: var(--ink); }
+    .hero-visual { position: relative; min-height: 430px; display: grid; place-items: center; }
+    .hero-screen { width: min(100%, 520px); padding: 10px; overflow: hidden; border: 1px solid var(--line); border-radius: 25px; background: #fff; box-shadow: var(--shadow); transform: rotate(2deg); }
+    .hero-screen img { width: 100%; aspect-ratio: 1.5; border-radius: 17px; object-fit: contain; object-position: center; }
+    .float-card { position: absolute; right: -3px; bottom: 8px; display: flex; align-items: center; gap: 12px; padding: 13px 17px; border: 1px solid var(--line); border-radius: 16px; background: #191919; box-shadow: 0 14px 35px rgb(0 0 0 / 35%); }
+    .float-icon { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 12px; background: rgb(234 123 26 / 18%); color: var(--yellow); font-size: 1.2rem; }
+    .float-card strong { display: block; font-size: .9rem; }
+    .float-card small { color: var(--muted); font-size: .74rem; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 56px; }
+    .stat { padding: 17px 18px; border: 1px solid var(--line); border-radius: 17px; background: rgb(25 25 25 / 88%); }
+    .stat strong { display: block; font-size: 1.15rem; letter-spacing: -.04em; }
+    .stat span { color: var(--muted); font-size: .78rem; }
+
+    section { padding: 82px 0; }
+    .section-heading { max-width: 680px; margin-bottom: 34px; }
+    .section-heading h2 { margin: 12px 0 10px; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -.065em; line-height: 1.08; }
+    .section-heading p { margin: 0; color: var(--muted); }
+    .about-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 22px; }
+    .about-card { padding: 30px; border: 1px solid var(--line); border-radius: 22px; background: var(--white); }
+    .about-card h3 { margin: 0 0 12px; font-size: 1.14rem; letter-spacing: -.03em; }
+    .about-card p { margin: 0; color: var(--muted); }
+    .about-card.accent { border: 1px solid var(--line); background: #191919; color: white; }
+    .about-card.accent p { color: rgb(255 255 255 / 76%); }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 21px; }
+    .pill { padding: 7px 11px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: .76rem; font-weight: 700; }
+    .accent .pill { border-color: rgb(255 255 255 / 25%); color: white; }
+
+    .gallery-section { background: #141414; }
+    .mockup-group + .mockup-group { margin-top: 52px; }
+    .mockup-heading { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 17px; }
+    .mockup-heading h3 { margin: 0; font-size: clamp(1.25rem, 2.5vw, 1.65rem); letter-spacing: -.04em; }
+    .mockup-heading p { margin: 4px 0 0; color: var(--muted); font-size: .84rem; }
+    .row-hint { flex: 0 0 auto; color: var(--orange-dark); font-size: .76rem; font-weight: 750; }
+    .mockup-row { display: grid; grid-auto-columns: minmax(280px, 1fr); grid-auto-flow: column; gap: 16px; overflow-x: auto; padding: 2px 2px 15px; scroll-snap-type: x mandatory; scrollbar-color: var(--orange) #242424; }
+    .mockup-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: #191919; scroll-snap-align: start; }
+    .mockup-card button { display: block; width: 100%; padding: 0; overflow: hidden; border: 0; background: #121212; cursor: zoom-in; }
+    .mockup-card img { width: 100%; height: 250px; padding: 10px; object-fit: contain; transition: transform .3s; }
+    .mockup-card button:hover img { transform: scale(1.025); }
+    .mockup-card.mobile-card { width: 100%; }
+    .mobile-card button { background: #111; }
+    .mobile-card img { height: 430px; padding: 10px; }
+    .mockup-caption { min-height: 77px; padding: 14px 16px; border-top: 1px solid var(--line); }
+    .mockup-caption strong { display: block; font-size: .92rem; }
+    .mockup-caption span { color: var(--muted); font-size: .77rem; }
+    .mockup-caption em { float: right; color: var(--orange-dark); font-size: .72rem; font-style: normal; font-weight: 750; }
+    .showcase-block { margin-top: 58px; }
+    .showcase-frame { overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: #191919; box-shadow: var(--shadow); }
+    .showcase-frame button { display: block; width: 100%; padding: 12px; border: 0; background: transparent; cursor: zoom-in; }
+    .showcase-frame img { width: 100%; max-height: 760px; object-fit: contain; }
+    .showcase-caption { padding: 17px 20px; border-top: 1px solid var(--line); }
+    .showcase-caption strong { display: block; font-size: 1rem; }
+    .showcase-caption span { color: var(--muted); font-size: .82rem; }
+    .pdf-viewer { display: block; width: 100%; height: min(86vh, 1000px); min-height: 620px; border: 0; background: #fff; }
+    .er-frame button { background: #fff; }
+    .er-frame img { display: block; width: auto; max-width: 100%; margin: 0 auto; }
+    .mascot-frame { overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: radial-gradient(ellipse at center, #24201c, #111); box-shadow: var(--shadow); }
+    .mascot-frame button { display: grid; width: 100%; min-height: 570px; place-items: center; padding: 22px; border: 0; background: transparent; cursor: zoom-in; }
+    .mascot-frame img { width: 100%; height: 570px; object-fit: contain; transition: transform .3s; }
+    .mascot-frame button:hover img { transform: scale(1.025); }
+    .mascot-caption { padding: 17px 20px; border-top: 1px solid var(--line); background: #191919; }
+    .mascot-caption strong { display: block; font-size: 1rem; }
+    .mascot-caption span { color: var(--muted); font-size: .82rem; }
+    .video-frame { overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: #080808; box-shadow: var(--shadow); }
+    .video-frame video { display: block; width: 100%; max-height: 78vh; aspect-ratio: 16 / 9; background: #080808; object-fit: contain; }
+    .video-help { margin: 0; padding: 11px 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: .78rem; }
+    .video-help a { color: var(--orange-dark); font-weight: 700; }
+    .video-caption { padding: 17px 20px; border-top: 1px solid var(--line); background: #191919; }
+    .video-caption strong { display: block; font-size: 1rem; }
+    .video-caption span { color: var(--muted); font-size: .82rem; }
+
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .person { overflow: hidden; border: 1px solid var(--line); border-radius: 19px; background: var(--white); }
+    .person img { width: 100%; height: 270px; object-fit: cover; object-position: center 30%; }
+    .person-caption { padding: 15px 16px 17px; }
+    .person-caption strong { display: block; }
+    .person-caption span { color: var(--muted); font-size: .79rem; }
+    .team-note { margin: 17px 0 0; color: var(--muted); font-size: .78rem; }
+
+    .files-section { background: #101010; }
+    .file-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; }
+    .filter { padding: 9px 14px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer; font-size: .8rem; font-weight: 700; }
+    .filter[aria-pressed="true"] { border-color: var(--orange); background: var(--orange); color: #111; }
+    .file-count { color: var(--muted); font-size: .82rem; }
+    .file-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .file-card { display: flex; min-height: 102px; align-items: center; gap: 14px; padding: 15px; border: 1px solid var(--line); border-radius: 15px; background: var(--paper); text-decoration: none; transition: transform .2s, border-color .2s; }
+    .file-card:hover { transform: translateY(-2px); border-color: var(--orange); }
+    .file-card[hidden] { display: none; }
+    .file-icon { width: 42px; height: 46px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 11px; background: rgb(234 123 26 / 18%); color: var(--yellow); font-size: .68rem; font-weight: 900; }
+    .file-card[data-kind="video"] .file-icon, .file-card[data-kind="spreadsheet"] .file-icon { background: rgb(234 123 26 / 18%); color: var(--yellow); }
+    .file-info { min-width: 0; }
+    .file-info strong { display: block; overflow-wrap: anywhere; font-size: .83rem; line-height: 1.35; }
+    .file-info span { display: block; margin-top: 5px; color: var(--muted); font-size: .72rem; }
+    .file-arrow { margin-left: auto; color: #b9b9b9; font-size: 1.15rem; }
+
+    .closing { padding: 58px 0; }
+    .closing-card { display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: 35px 40px; border: 1px solid var(--line); border-radius: 24px; background: #191919; color: white; }
+    .closing-card h2 { margin: 0 0 7px; font-size: clamp(1.7rem, 3vw, 2.5rem); letter-spacing: -.06em; }
+    .closing-card p { margin: 0; color: rgb(255 255 255 / 72%); }
+    .closing-card .button { flex: 0 0 auto; background: var(--orange); color: #111; }
+    .closing-card .button:hover { background: var(--yellow); }
+    footer { padding: 25px 0 34px; border-top: 1px solid var(--line); color: var(--muted); font-size: .78rem; }
+    .footer-row { display: flex; justify-content: space-between; gap: 16px; }
+
+    .lightbox { position: fixed; z-index: 30; inset: 0; display: none; align-items: center; justify-content: center; padding: 24px; background: rgb(0 0 0 / 90%); }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: min(100%, 1100px); max-height: 88vh; object-fit: contain; border-radius: 10px; box-shadow: 0 24px 80px #0008; }
+    .lightbox-close { position: absolute; top: 17px; right: 20px; width: 44px; height: 44px; border: 1px solid #ffffff70; border-radius: 50%; background: #ffffff18; color: white; cursor: pointer; font-size: 1.55rem; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+    @media (max-width: 850px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 22px; }
+      .hero { padding-top: 55px; }
+      .hero-visual { min-height: auto; padding: 10px 18px 32px; }
+      .hero-screen { width: min(100%, 650px); }
+      .float-card { right: 0; bottom: 0; }
+      .about-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .file-grid { grid-template-columns: repeat(2, 1fr); }
+      .mockup-row { grid-auto-columns: minmax(270px, 47%); }
+    }
+    @media (max-width: 600px) {
+      .wrap { width: min(100% - 32px, 1160px); }
+      .nav { min-height: 66px; }
+      .brand img { width: 42px; height: 37px; }
+      .nav-links { gap: 13px; }
+      .nav-links a { font-size: .76rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .nav-cta { padding: 9px 13px; }
+      .hero { padding: 45px 0 54px; }
+      .hero h1 { font-size: clamp(3.2rem, 17vw, 5rem); }
+      .hero-copy { font-size: .96rem; }
+      .hero-visual { padding-inline: 5px; }
+      .hero-screen { padding: 7px; border-radius: 18px; }
+      .hero-screen img { border-radius: 13px; }
+      .float-card { right: -4px; padding: 10px 12px; }
+      .float-icon { width: 33px; height: 33px; }
+      .stats { gap: 7px; margin-top: 42px; }
+      .stat { padding: 12px 10px; }
+      .stat strong { font-size: .96rem; }
+      .stat span { font-size: .68rem; }
+      section { padding: 61px 0; }
+      .about-card { padding: 23px; }
+      .mockup-group + .mockup-group { margin-top: 38px; }
+      .mockup-heading { align-items: flex-start; flex-direction: column; gap: 4px; }
+      .mockup-row { grid-auto-columns: 84%; gap: 12px; }
+      .mockup-card img { height: 220px; }
+      .mobile-card img { height: 410px; }
+      .showcase-block { margin-top: 40px; }
+      .showcase-frame button { padding: 6px; }
+      .showcase-frame img { max-height: 68vh; }
+      .pdf-viewer { height: 78vh; min-height: 480px; }
+      .video-frame video { max-height: 55vh; }
+      .showcase-caption, .video-caption { padding: 14px 15px; }
+      .mascot-frame button { min-height: 430px; padding: 12px; }
+      .mascot-frame img { height: 430px; }
+      .mascot-caption { padding: 14px 15px; }
+      .team-grid { gap: 10px; }
+      .person img { height: 220px; }
+      .person-caption { padding: 12px; }
+      .file-grid { grid-template-columns: 1fr; }
+      .closing-card { align-items: flex-start; flex-direction: column; padding: 27px 24px; }
+      .footer-row { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav wrap" aria-label="Navegación principal">
+      <a class="brand" href="#inicio" aria-label="HIRE-U, ir al inicio">
+        <img src="img/Logo HIRE-U 2.0.png" alt="">
+        <span class="brand-name">HIRE-<span>U</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#proyecto">Proyecto</a>
+        <a href="#equipo">Equipo</a>
+        <a href="#pantallas">Diseño</a>
+        <a class="nav-cta" href="#entregables">Ver entregables <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow">Portafolio de proyecto · 2025</span>
+            <h1>Hire-U <br>Tu camino laboral empieza <span>aquí.</span></h1>
+            <p class="hero-copy">HIRE-U conecta a estudiantes y egresados con oportunidades de empleo, una red profesional y herramientas para dar el siguiente paso.</p>
+            <div class="hero-actions">
+              <a class="button" href="#pantallas">Explorar el proyecto <span aria-hidden="true">↓</span></a>
+              <a class="button secondary" href="#entregables">Ver todos los archivos</a>
+            </div>
+            <div class="hero-note"><strong>Universidad de San Buenaventura</strong><span>·</span><span>Bogotá, Colombia</span></div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-screen">
+              <img src="img/Logo HIRE-U 2.0.png" alt="Logo de HIRE-U con la mascota y el lema Tu camino laboral empieza aquí">
+            </div>
+            <div class="float-card">
+              <span class="float-icon" aria-hidden="true">✦</span>
+              <span><strong>Talento con propósito</strong><small>Una comunidad que abre oportunidades</small></span>
+            </div>
+          </div>
+        </div>
+        <div class="stats" aria-label="Resumen del proyecto">
+          <div class="stat"><strong>Una plataforma</strong><span>para conectar talento y empleo</span></div>
+          <div class="stat"><strong>Diseño adaptable</strong><span>experiencia en móvil y escritorio</span></div>
+          <div class="stat"><strong>De principio a fin</strong><span>documentación, datos e interfaz</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proyecto">
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="eyebrow">La idea</span>
+          <h2>Una red que acompaña el siguiente paso.</h2>
+          <p>HIRE-U reúne en un solo lugar recursos para que la comunidad universitaria encuentre oportunidades y construya su camino profesional.</p>
+        </div>
+        <div class="about-grid">
+          <article class="about-card">
+            <h3>¿Qué es HIRE-U?</h3>
+            <p>Una propuesta de plataforma laboral universitaria que acerca a estudiantes y egresados a empresas, ofertas de empleo, perfiles profesionales, eventos y una red de contactos.</p>
+            <div class="pill-row"><span class="pill">Empleabilidad</span><span class="pill">Comunidad</span><span class="pill">Oportunidades</span></div>
+          </article>
+          <article class="about-card accent">
+            <h3>Una experiencia hecha para avanzar</h3>
+            <p>El proyecto explora flujos de registro e ingreso, recuperación de contraseña y un panel principal; también define la estructura de datos y la planeación necesaria para construir la solución.</p>
+            <div class="pill-row"><span class="pill">Web + móvil</span><span class="pill">Diseño centrado en personas</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="equipo">
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="eyebrow">Personas detrás de la idea</span>
+          <h2>Un proyecto hecho en equipo.</h2>
+          <p>Conoce a quienes hacen parte del equipo HIRE-U.</p>
+        </div>
+        <div class="team-grid">
+          <article class="person"><img src="img/Sebastian.png" alt="Retrato ilustrado de Sebastián" loading="lazy"><div class="person-caption"><strong>Sebastián Rodriguez </strong><span>Equipo HIRE-U</span></div></article>
+          <article class="person"><img src="img/Felipe.png" alt="Retrato ilustrado de Felipe" loading="lazy"><div class="person-caption"><strong>Andres felipe Martinez </strong><span>Equipo HIRE-U</span></div></article>
+          <article class="person"><img src="img/Cardozo.png" alt="Retrato ilustrado de Cardozo" loading="lazy"><div class="person-caption"><strong>Andres Cardozo</strong><span>Equipo HIRE-U</span></div></article>
+          <article class="person"><img src="img/Quintero.png" alt="Retrato ilustrado de Quintero" loading="lazy"><div class="person-caption"><strong>Andres felipe Quintero</strong><span>Equipo HIRE-U</span></div></article>
+        </div>
+       
+      </div>
+    </section>
+
+    <section class="gallery-section" id="pantallas">
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="eyebrow">Diseño de producto</span>
+          <h2>La experiencia, pantalla por pantalla.</h2>
+          <p>Primero conoce las vistas de computador, luego las de celular. Selecciona cualquier mockup para ampliarlo.</p>
+        </div>
+        <div class="mockup-group">
+          <div class="mockup-heading">
+            <div><h3>01 · Mockups para computador</h3><p>Vistas de escritorio del recorrido principal.</p></div>
+            <span class="row-hint">Desliza para ver todas ↔</span>
+          </div>
+          <div class="mockup-row" aria-label="Mockups para computador">
+            <article class="mockup-card">
+              <button type="button" data-lightbox="img/Ingresar compu.png" data-alt="Mockup para computador: inicio de sesión">
+                <img src="img/Ingresar compu.png" alt="Mockup en computador de inicio de sesión" loading="lazy">
+              </button>
+              <div class="mockup-caption"><strong>Inicio de sesión · PC</strong><span>Ingreso de usuarios a HIRE-U</span><em>Ampliar ↗</em></div>
+            </article>
+            <article class="mockup-card">
+              <button type="button" data-lightbox="img/Cuenta nueva compu.png" data-alt="Mockup para computador: creación de cuenta">
+                <img src="img/Cuenta nueva compu.png" alt="Mockup en computador para crear una cuenta" loading="lazy">
+              </button>
+              <div class="mockup-caption"><strong>Crear cuenta · PC</strong><span>Registro de nuevos perfiles</span><em>Ampliar ↗</em></div>
+            </article>
+            <article class="mockup-card">
+              <button type="button" data-lightbox="img/Contraseña compu.png" data-alt="Mockup para computador: recuperación de contraseña">
+                <img src="img/Contraseña compu.png" alt="Mockup en computador de recuperación de contraseña" loading="lazy">
+              </button>
+              <div class="mockup-caption"><strong>Recuperar contraseña · PC</strong><span>Restablecimiento de acceso</span><em>Ampliar ↗</em></div>
+            </article>
+            <article class="mockup-card">
+              <button type="button" data-lightbox="img/Principal laptop.png" data-alt="Mockup para computador: panel principal de HIRE-U">
+                <img src="img/Principal laptop.png" alt="Mockup en computador del panel principal de HIRE-U" loading="lazy">
+              </button>
+              <div class="mockup-caption"><strong>Panel principal · PC</strong><span>Perfil, red y oportunidades laborales</span><em>Ampliar ↗</em></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="mockup-group">
+          <div class="mockup-heading">
+            <div><h3>02 · Mockups para celular</h3><p>La misma experiencia, adaptada a la pantalla móvil.</p></div>
+            <span class="row-hint">Desliza para ver todas ↔</span>
+          </div>
+          <div class="mockup-row" aria-label="Mockups para celular">
+            <article class="mockup-card mobile-card">
+              <button type="button" data-lightbox="img/Menu principal.png" data-alt="Mockup para celular: bienvenida y menú principal">
+                <img src="img/Menu principal.png" alt="Mockup móvil de bienvenida con las opciones principales" loading="lazy">
+              </button>
+              <div class="mockup-caption"><strong>Bienvenida · Móvil</strong><span>Menú principal y opciones de acceso</span><em>Ampliar ↗</em></div>
+            </article>
+            <article class="mockup-card mobile-card">
+              <button type="button" data-lightbox="img/inicio de sesion.png" data-alt="Mockup para celular: inicio de sesión">
+                <img src="img/inicio de sesion.png" alt="Mockup móvil de inicio de sesión en HIRE-U" loading="lazy">
+              </button>
+              <div class="mockup-caption"><strong>Inicio de sesión · Móvil</strong><span>Ingreso desde el teléfono</span><em>Ampliar ↗</em></div>
+            </article>
+            <article class="mockup-card mobile-card">
+              <button type="button" data-lightbox="img/Registro.png" data-alt="Mockup para celular: registro de usuario">
+                <img src="img/Registro.png" alt="Mockup móvil del formulario para crear una cuenta" loading="lazy">
+              </button>
+              <div class="mockup-caption"><strong>Registro · Móvil</strong><span>Creación de una cuenta nueva</span><em>Ampliar ↗</em></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="showcase-block">
+          <div class="mockup-heading">
+            <div><h3>03 · Normas APA del proyecto</h3><p>Consulta el documento del proyecto integrador con desplazamiento y zoom, o descárgalo en PDF.</p></div>
+            <a class="button secondary" href="img/documento%20apa%203er%20semestre.pdf" download="normas-apa-tercer-semestre.pdf">Descargar PDF <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="showcase-frame">
+            <iframe class="pdf-viewer" src="img/documento%20apa%203er%20semestre.pdf#view=FitH" title="Documento de normas APA del proyecto HIRE-U, tercer semestre" loading="lazy">
+              No se pudo mostrar el PDF. <a href="img/documento%20apa%203er%20semestre.pdf" download="normas-apa-tercer-semestre.pdf">Descárgalo aquí</a>.
+            </iframe>
+            <div class="showcase-caption"><strong>Documento del proyecto · Tercer semestre</strong><span>Versión con normas APA del proyecto HIRE-U.</span></div>
+          </div>
+        </div>
+
+        <div class="showcase-block">
+          <div class="mockup-heading">
+            <div><h3>04 · Script de base de datos</h3><p>Explora el documento completo con desplazamiento y zoom en el visor. También puedes descargarlo.</p></div>
+            <a class="button secondary" href="img/dump%20y%20scrip%20bases%20de%20datos%20.pdf" download="script-base-de-datos.pdf">Descargar PDF <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="showcase-frame">
+            <iframe class="pdf-viewer" src="img/dump%20y%20scrip%20bases%20de%20datos%20.pdf#view=FitH" title="Script de base de datos de HIRE-U" loading="lazy">
+              No se pudo mostrar el PDF. <a href="img/dump%20y%20scrip%20bases%20de%20datos%20.pdf" download="script-base-de-datos.pdf">Descárgalo aquí</a>.
+            </iframe>
+            <div class="showcase-caption"><strong>Script de base de datos · HIRE-U</strong><span>Documento PDF con el script de la base de datos del proyecto.</span></div>
+          </div>
+        </div>
+
+        <div class="showcase-block">
+          <div class="mockup-heading">
+            <div><h3>05 · Diagrama entidad-relación</h3><p>Entidades principales de HIRE-U y sus relaciones en la base de datos. Selecciónalo para ampliarlo.</p></div>
+          </div>
+          <div class="showcase-frame er-frame">
+            <button type="button" data-lightbox="img/modelo entidad relacion.png" data-alt="Diagrama entidad-relación de la base de datos de HIRE-U">
+              <img src="img/modelo entidad relacion.png" alt="Diagrama entidad-relación de HIRE-U con empresas, ofertas laborales, egresados, postulaciones, experiencia, estudios, auditoría y sesiones" loading="lazy">
+            </button>
+            <div class="showcase-caption"><strong>Modelo entidad-relación · HIRE-U</strong><span>Relaciones entre empresas, ofertas laborales, postulaciones, egresados y sus datos académicos y profesionales.</span></div>
+          </div>
+        </div>
+
+        <div class="showcase-block">
+          <div class="mockup-heading">
+            <div><h3>06 · Diagrama de clases</h3><p>Modelo de las entidades y relaciones principales de HIRE-U. Selecciónalo para verlo todavía más grande.</p></div>
+          </div>
+          <div class="showcase-frame">
+            <button type="button" data-lightbox="img/dragrama de clases.png" data-alt="Diagrama de clases completo de la base de datos HIRE-U">
+              <img src="img/dragrama de clases.png" alt="Diagrama completo del modelo de clases y base de datos de HIRE-U" loading="lazy">
+            </button>
+            <div class="showcase-caption"><strong>Modelo de clases · HIRE-U</strong><span>Empresas, ofertas laborales, postulaciones, egresados, experiencia, estudios y auditoría.</span></div>
+          </div>
+        </div>
+
+        <div class="showcase-block">
+          <div class="mockup-heading">
+            <div><h3>07 · Diagrama Modelo Vista Controlador (MVC)</h3><p>Arquitectura del sistema para conectar egresados, empresas y oportunidades laborales.</p></div>
+          </div>
+          <div class="showcase-frame">
+            <button type="button" data-lightbox="img/modelo vista controlador.png" data-alt="Diagrama de la arquitectura Modelo Vista Controlador de HIRE-U">
+              <img src="img/modelo vista controlador.png" alt="Diagrama de la arquitectura Modelo Vista Controlador de HIRE-U" loading="lazy">
+            </button>
+            <div class="showcase-caption"><strong>Arquitectura MVC · HIRE-U</strong><span>El modelo MVC (Modelo-Vista-Controlador) organiza Hire-U en tres partes: la Vista, que muestra la interfaz al usuario; el Controlador, que recibe y procesa las solicitudes; y el Modelo, que gestiona los datos y se conecta con MySQL. Estos componentes trabajan juntos para administrar la información de empresas, egresados y ofertas laborales, facilitando la organización, el mantenimiento y la seguridad del sistema..</span></div>
+          </div>
+        </div>
+
+        <div class="showcase-block">
+          <div class="mockup-heading">
+            <div><h3>08 · Identidad y mascota</h3><p>El personaje que acompaña la identidad de HIRE-U.</p></div>
+          </div>
+          <div class="mascot-frame">
+            <button type="button" data-lightbox="img/Mascota.png" data-alt="Mascota ilustrada de HIRE-U con toga, birrete y fondo de campus">
+              <img src="img/Mascota.png" alt="Mascota de HIRE-U con toga y birrete" loading="lazy">
+            </button>
+            <div class="mascot-caption"><strong>La mascota de HIRE-U</strong><span>Una identidad cercana para acompañar a estudiantes y egresados en su camino profesional.</span></div>
+          </div>
+        </div>
+
+        <div class="showcase-block">
+          <div class="mockup-heading">
+            <div><h3>09 · Video del proyecto</h3><p>Reproduce la presentación audiovisual de HIRE-U aquí mismo.</p></div>
+          </div>
+          <div class="video-frame">
+            <video id="project-video" controls preload="metadata" playsinline poster="img/Logo%20HIRE-U%202.0.png" aria-label="Video de presentación del proyecto HIRE-U">
+              <source src="img/Video%20Project%203.mp4" type="video/mp4">
+              Tu navegador no puede reproducir este video. <a href="img/Video%20Project%203.mp4" target="_blank" rel="noopener">Abre el video en otra pestaña</a>.
+            </video>
+            <p class="video-help" id="video-help" hidden>Si el contador permanece en 0, abre esta página con <strong>Live Server</strong> en VS Code (botón <strong>Go Live</strong>); algunos navegadores bloquean la reproducción al abrir el archivo HTML directamente. También puedes <a href="img/Video%20Project%203.mp4" target="_blank" rel="noopener">abrir el MP4 directamente</a>.</p>
+            <div class="video-caption"><strong>Presentación de HIRE-U</strong><span>Video del proyecto integrador · Video Project 3.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="files-section" id="entregables">
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="eyebrow">Material del proyecto</span>
+          <h2>Todos los entregables, en un solo lugar.</h2>
+          <p>Consulta y descarga los documentos, diagramas y archivos de datos del proyecto.</p>
+        </div>
+        <div class="file-toolbar">
+          <div class="filters" role="group" aria-label="Filtrar entregables">
+            <button class="filter" type="button" data-filter="all" aria-pressed="true">Todos</button>
+            <button class="filter" type="button" data-filter="document" aria-pressed="false">Documentos</button>
+            <button class="filter" type="button" data-filter="spreadsheet" aria-pressed="false">Hoja de cálculo</button>
+            <button class="filter" type="button" data-filter="diagram" aria-pressed="false">Diagramas</button>
+          </div>
+          <span class="file-count" aria-live="polite">14 archivos</span>
+        </div>
+        <div class="file-grid">
+          <a class="file-card" data-kind="document" href="img/01-acta-presentacion.pdf" target="_blank" rel="noopener"><span class="file-icon">PDF</span><span class="file-info"><strong>Acta de presentación</strong><span>01-acta-presentacion.pdf · Abrir PDF</span></span><span class="file-arrow" aria-hidden="true">↗</span></a>
+          <a class="file-card" data-kind="document" href="img/Base%20de%20datos%201.0.pdf" target="_blank" rel="noopener"><span class="file-icon">PDF</span><span class="file-info"><strong>Base de datos · Versión 1.0</strong><span>Base de datos 1.0.pdf · Abrir PDF</span></span><span class="file-arrow" aria-hidden="true">↗</span></a>
+          <a class="file-card" data-kind="document" href="img/Base%20de%20datos%202.0.pdf" target="_blank" rel="noopener"><span class="file-icon">PDF</span><span class="file-info"><strong>Base de datos · Versión 2.0</strong><span>Base de datos 2.0.pdf · Abrir PDF</span></span><span class="file-arrow" aria-hidden="true">↗</span></a>
+          <a class="file-card" data-kind="document" href="img/dump%20y%20scrip%20bases%20de%20datos%20.pdf" target="_blank" rel="noopener"><span class="file-icon">PDF</span><span class="file-info"><strong>Script de base de datos</strong><span>dump y scrip bases de datos .pdf · Abrir PDF</span></span><span class="file-arrow" aria-hidden="true">↗</span></a>
+          <a class="file-card" data-kind="document" href="img/documento%20apa%203er%20semestre.pdf" target="_blank" rel="noopener"><span class="file-icon">PDF</span><span class="file-info"><strong>Normas APA · Proyecto tercer semestre</strong><span>documento apa 3er semestre.pdf · Abrir PDF</span></span><span class="file-arrow" aria-hidden="true">↗</span></a>
+          <a class="file-card" data-kind="document" href="img/Documento%20proyecto%20normas%20APA%20%285%29.pdf" target="_blank" rel="noopener"><span class="file-icon">PDF</span><span class="file-info"><strong>Documento del proyecto</strong><span>Documento proyecto normas APA (5).pdf · Abrir PDF</span></span><span class="file-arrow" aria-hidden="true">↗</span></a>
+          <a class="file-card" data-kind="document" href="img/Documento_Norma_APA_7%20HIREU.pdf" target="_blank" rel="noopener"><span class="file-icon">PDF</span><span class="file-info"><strong>Documento HIRE-U · Normas APA 7</strong><span>Documento_Norma_APA_7 HIREU.pdf · Abrir PDF</span></span><span class="file-arrow" aria-hidden="true">↗</span></a>
+          <a class="file-card" data-kind="document" href="img/Matriz%20RACI%20PERT%20Hire-U.pdf" target="_blank" rel="noopener"><span class="file-icon">PDF</span><span class="file-info"><strong>Matriz RACI y diagrama PERT</strong><span>Matriz RACI PERT Hire-U.pdf · Abrir PDF</span></span><span class="file-arrow" aria-hidden="true">↗</span></a>
+          <a class="file-card" data-kind="document" href="img/plan%20de%20gestion%20y%20EDT.pdf" target="_blank" rel="noopener"><span class="file-icon">PDF</span><span class="file-info"><strong>Plan de gestión y EDT</strong><span>plan de gestion y EDT.pdf · Abrir PDF</span></span><span class="file-arrow" aria-hidden="true">↗</span></a>
+          <a class="file-card" data-kind="document" href="img/requerimientos%20funcionales%20y%20no%20funcionales.pdf" target="_blank" rel="noopener"><span class="file-icon">PDF</span><span class="file-info"><strong>Requerimientos funcionales y no funcionales</strong><span>requerimientos funcionales y no funcionales.pdf · Abrir PDF</span></span><span class="file-arrow" aria-hidden="true">↗</span></a>
+          <a class="file-card" data-kind="diagram" href="img/modelo%20entidad%20relacion.png" target="_blank" rel="noopener"><span class="file-icon">ER</span><span class="file-info"><strong>Diagrama entidad-relación</strong><span>modelo entidad relacion.png · Ver diagrama</span></span><span class="file-arrow" aria-hidden="true">↗</span></a>
+          <a class="file-card" data-kind="diagram" href="img/dragrama%20de%20clases.png" target="_blank" rel="noopener"><span class="file-icon">UML</span><span class="file-info"><strong>Diagrama de clases</strong><span>Ver diagrama</span></span><span class="file-arrow" aria-hidden="true">↗</span></a>
+          <a class="file-card" data-kind="diagram" href="img/modelo%20vista%20controlador.png" target="_blank" rel="noopener"><span class="file-icon">MVC</span><span class="file-info"><strong>Modelo Vista Controlador</strong><span>modelo vista controlador.png · Ver diagrama</span></span><span class="file-arrow" aria-hidden="true">↗</span></a>
+          <a class="file-card" data-kind="spreadsheet" href="img/HIRE_U_Presupuesto_Inversion.xlsx" download><span class="file-icon">XLSX</span><span class="file-info"><strong>Presupuesto de inversión</strong><span>HIRE_U_Presupuesto_Inversion.xlsx · Descargar</span></span><span class="file-arrow" aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="wrap">
+        <div class="closing-card">
+          <div><h2>HIRE-U: oportunidades para crecer.</h2><p>Una idea universitaria con la mirada puesta en el futuro profesional.</p></div>
+          <a class="button" href="#inicio">Volver al inicio ↑</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row"><span>© 2026 · Proyecto HIRE-U</span><span>Universidad de San Buenaventura · Bogotá</span></div>
+  </footer>
+
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Vista ampliada de imagen" tabindex="-1">
+    <button class="lightbox-close" type="button" aria-label="Cerrar imagen">×</button>
+    <img src="" alt="">
+  </div>
+  <script>
+    const filterButtons = document.querySelectorAll(".filter");
+    const fileCards = document.querySelectorAll(".file-card");
+    const fileCount = document.querySelector(".file-count");
+    const videoPlayer = document.querySelector("#project-video");
+    const videoHelp = document.querySelector("#video-help");
+
+    if (location.protocol === "file:") videoHelp.hidden = false;
+    videoPlayer.addEventListener("error", () => {
+      videoHelp.hidden = false;
+    });
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.filter;
+        let visible = 0;
+        filterButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+        fileCards.forEach((card) => {
+          const show = filter === "all" || card.dataset.kind === filter;
+          card.hidden = !show;
+          if (show) visible += 1;
+        });
+        fileCount.textContent = `${visible} ${visible === 1 ? "archivo" : "archivos"}`;
+      });
+    });
+
+    const lightbox = document.querySelector(".lightbox");
+    const lightboxImage = lightbox.querySelector("img");
+    const closeButton = lightbox.querySelector(".lightbox-close");
+    let lastFocusedElement;
+
+    document.querySelectorAll("[data-lightbox]").forEach((button) => {
+      button.addEventListener("click", () => {
+        lastFocusedElement = button;
+        lightboxImage.src = button.dataset.lightbox;
+        lightboxImage.alt = button.dataset.alt;
+        lightbox.classList.add("open");
+        closeButton.focus();
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove("open");
+      lightboxImage.src = "";
+      if (lastFocusedElement) lastFocusedElement.focus();
+    }
+
+    closeButton.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+    });
+  </script>
+</body>
+</html>
